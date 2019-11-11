@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="background_color">#222327</color>
+    <color name="digit_color">#FFFFFF</color>
+    <color name="operator_color">#EB618C</color>
 </resources>
