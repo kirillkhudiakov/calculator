@@ -15,12 +15,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModel = ViewModelProviders.of(this)[MainViewModel::class.java]
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+        // Dynamically add on click listener for each button.
         for (child in binding.buttons.children) {
             child.setOnClickListener {
                 viewModel.onButtonClicked((child as TextView).text.toString())
