@@ -10,15 +10,19 @@
             type="khudiakov.kirill.calculator.MainViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background_color"
-        android:orientation="vertical">
+        android:background="@color/background_color">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/result_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/buttons"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:context=".MainActivity">
 
             <TextView
@@ -66,9 +70,13 @@
         <androidx.gridlayout.widget.GridLayout
             android:id="@+id/buttons"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="0dp"
             android:padding="35dp"
             app:columnCount="4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/result_layout"
             app:rowCount="5">
 
             <TextView
@@ -327,5 +335,5 @@
                 app:layout_rowWeight="1" />
         </androidx.gridlayout.widget.GridLayout>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
