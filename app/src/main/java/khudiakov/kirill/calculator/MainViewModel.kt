@@ -1,5 +1,7 @@
 package khudiakov.kirill.calculator
 
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,6 +18,8 @@ class MainViewModel : ViewModel() {
     private val _expression = MutableLiveData<String>()
     val expression: LiveData<String>
         get() = _expression
+
+    private var lastCalculatedExpression: String? = null
 
     /**
      * Click listener for each calculator button.
@@ -35,7 +39,7 @@ class MainViewModel : ViewModel() {
      */
     private fun calculate() {
         try {
-            if (_result.value == null) {
+            if (_result.value == null || _expression.value != lastCalculatedExpression) {
                 _result.value = calculator.calculate(_expression.value).toString()
             } else if (_result.value != ERROR_STRING) {
                 getLastOperation()?.let {
@@ -44,8 +48,11 @@ class MainViewModel : ViewModel() {
                 }
             }
         } catch (e: Exception) {
-            _result.value = "Invalid input"
+            _result.value = ERROR_STRING
             _expression.value = null
+        }
+        finally {
+            lastCalculatedExpression = _expression.value
         }
     }
 
